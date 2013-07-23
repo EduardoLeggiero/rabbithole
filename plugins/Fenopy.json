@@ -1,0 +1,106 @@
+{
+	"base_search_url": "http://fenopy.se/",
+	"headers":  
+	{		
+	},
+	"page_rules":
+	{
+		"start":0,
+		"step":50,
+		"max_items":50
+	},
+	"pattern": "?keyword=[query]&?cat=[category]&start=[page].html",
+	"operations":["titles_filter","category_filter","size_filter","seed_filter","leech_filter","magnet_url_filter"],
+	"categories":
+	{
+		"All":0,
+		"Movies":3,
+		"Tv":78,
+		"Games":4,
+		"Music":1,
+		"Applications":6,
+		"Anime":5,
+		"Books":7,
+		"Videos":2,
+		"Others":72
+	},
+	"titles_filter": 
+	{
+	    "tag": "a",
+	    "attrs":
+	    {
+		"href": true,
+		"title":true
+	    },
+	    "attr_len":2,
+	    "method": "attr",
+	    "attr":"title",
+	    "chipper":
+	    {
+		"start":1,
+		"step":1
+	    }
+	},
+	"category_filter":
+	{
+	    "tag": "td",
+	    "attrs":
+	    {
+		"class":"c1"
+	    },
+	    "method": "text",
+	    "manipulate":
+	    {
+		"regexp":"»(\\w+)"
+	    }
+	},
+	"size_filter":
+	{
+		"tag": "td",
+		"attrs":
+		{
+			"class":"si"
+		},
+		"method": "text",
+		"chipper":
+		{
+			"start":0,
+			"step":2
+		}
+	},
+	"seed_filter":
+	{
+		"tag": "td",
+		"attrs":
+		{
+			"class":"se"
+		},
+		"method": "text"
+	},
+	"leech_filter":
+	{
+		"tag": "td",
+		"attrs":
+		{
+			"class":"le"
+		},
+		"method": "text"
+	},
+	"magnet_url_filter":
+	{
+		"tag": "a",
+		"attrs":
+		{ 
+		    "href": true,
+		    "onclick":true
+		},
+		"attr_len":2,
+		"method": "attr",
+		"attr":"href",
+		"chipper":
+		{
+			"start":3,
+			"step":2
+		}
+	}
+}

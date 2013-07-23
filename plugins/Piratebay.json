@@ -1,0 +1,103 @@
+{
+	"base_search_url": "https://tpb.ipredator.se/search/",
+	"headers":  
+	{		
+	},
+	"page_rules":
+	{
+		"start":0,
+		"step":1,
+		"max_items":30
+	},
+	"pattern": "[query]/[page]/99/[category]",
+	"operations":["titles_filter","category_filter","size_filter","seed_filter","leech_filter","magnet_url_filter"],
+	"categories":
+	{
+		"All":0,
+		"Audio":100,
+		"Video":200,
+		"Applications":300,
+		"Games":400,
+		"Other":600
+	},
+	"titles_filter": 
+	{
+		"tag": "a",
+		"attrs":
+		{
+			"href":true,
+			"title":true,
+			"class":"detLink"
+		},
+		"method": "text"
+	},
+	"category_filter":
+	{
+	    "tag": "td",
+	    "attrs":
+	    {
+		"class":"vertTh"
+	    },
+	    "method": "text",
+	    "manipulate":
+	    {
+		"to_replace":["\n","\t"],
+		"replace_with":["",""]
+	    }
+	},
+	"size_filter":
+	{
+	    "tag": "font",
+	    "decode":true,
+	    "attrs":
+	    {
+		"class":"detDesc"
+	    },
+	    "method": "text",
+	    "manipulate":
+	    {
+		"regexp":"([0-9]*\\.?[0-9]+[GKMTiB]+)",
+		"to_replace":["i"],
+		"replace_with":[""]
+	    }
+	},
+	"seed_filter":
+	{
+		"tag": "td",
+		"attrs":
+		{
+			"align":"right"
+		},
+		"method": "text",
+		"chipper":
+		{
+			"start":0,
+			"step":2
+		}
+	},
+	"leech_filter":
+	{
+		"tag": "td",
+		"attrs":
+		{
+			"align":"right"
+		},
+		"method": "text",
+		"chipper":
+		{
+			"start":1,
+			"step":2
+		}
+	},
+	"magnet_url_filter":
+	{
+		"tag": "a",
+		"attrs":
+		{ 
+			"href": true,
+			"title":"Download this torrent using magnet"
+		},
+		"method":"attr",
+		"attr":"href"
+	}
+}

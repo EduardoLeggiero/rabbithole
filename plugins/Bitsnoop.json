@@ -1,0 +1,132 @@
+{
+    "base_search_url": "http://bitsnoop.com/search/",
+    "file_format":"gzip",
+    "headers":
+    {
+	"User-Agent":"'Mozilla/5.0'"
+    },
+    "page_rules":
+    {
+        "start":1,
+        "step":1,
+	"max_items":30
+    },
+    "pattern": "[category]/[query]/c/d/[page]/",
+    "operations":["titles_filter","category_filter","size_filter","seed_filter","leech_filter","url_filter"],
+    "categories":
+    {
+        "All":"all",
+	"Video":"video",
+	"Audio":"audio",
+	"Games":"games",
+	"Software":"software",
+	"Other":"other"
+    },
+    "titles_filter": 
+    {
+        "tag": "a",
+        "attrs":
+        {
+	    "href":true
+        },
+        "method": "text",
+	"attrs_len":1,
+	"chipper":
+	{
+	    "start":12,
+	    "step":1
+	}
+    },
+    "category_filter":
+    {
+        "tag": "li",
+        "attrs":
+        {
+        },
+        "method": "text",
+	"attrs_len":0,
+        "manipulate":
+        {
+            "regexp":"— (\\w+.*?\\w+)"
+        }
+    },
+    "size_filter":
+    {
+        "tag": "td",
+        "attrs":
+        {
+            "valign":"middle",
+	    "align":"right",
+	    "nowrap":"nowrap"
+        },
+	"attrs_len":3,
+        "method": "text",
+        "manipulate":
+        {
+            "regexp":"(\\d*\\.?\\d+ [TGMKB]+)"
+        }
+    },
+    "seed_filter":
+    {
+        "tag": "span",
+        "attrs":
+        {
+            "class":"seeders",
+	    "title":"Seeders"
+        },
+        "method":"text",
+	"manipulate":
+	{
+	    "to_replace":[","],
+	    "replace_with":[""]
+	}
+	
+    },
+    "leech_filter":
+    {
+        "tag": "span",
+                "attrs":
+        {
+            "class":"leechers",
+	    "title":"Leechers"
+        },
+        "method":"text",
+	"manipulate":
+	{
+	    "to_replace":[","],
+	    "replace_with":[""]
+	}
+        },
+    "url_filter":
+    {
+        "tag": "a",
+        "attrs":
+        {
+	    "href":true
+        },
+        "method": "attr",
+	"attr":"href",
+	"attrs_len":1,
+	"chipper":
+	{
+	    "start":12,
+	    "step":1
+	},
+	"manipulate":
+	{
+	    "prefix":"http://bitsnoop.com"
+	},	        
+	"crawler":
+	{
+	    "tag":"a",
+	    "attrs":
+	    {
+		"href":true,
+		"title":"Torrage.com",
+		"class":"dlbtn dl_tor2"
+	    },
+	    "method":"attr",
+	    "attr":"href"
+	}
+    }
+}

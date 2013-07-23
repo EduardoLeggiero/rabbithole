@@ -1,0 +1,107 @@
+{
+	"base_search_url": "http://www.torlock.com/",
+	"headers":  
+	{		
+	},
+	"page_rules":
+	{
+		"start":1,
+		"step":1,
+	        "max_items":75
+	},
+	"pattern": "[category]/torrents/[query].html?sort=seeds&page=[page]",
+	"operations":["titles_filter","category_filter","size_filter","seed_filter","leech_filter","url_filter"],
+	"categories":
+	{
+		"All":"all",
+		"Movies":"movie",
+		"Tv":"television",
+		"Games":"game",
+		"Music":"music",
+		"Software":"software",
+		"Anime":"anime",
+		"Ebooks":"ebooks"
+	},
+	"titles_filter": 
+	{
+		"tag": "td",
+		"attrs":
+		{
+			"id":"tv"
+		},
+		"method": "text",
+		"chipper":
+		{
+			"start":4,
+			"step":1
+		}
+	},
+	"category_filter":
+	{
+		"fixed_value":"N/A"
+	},
+	"size_filter":
+	{
+		"tag": "td",
+		"attrs":
+		{
+			"id":"ts"
+		},
+		"method": "text",
+		"chipper":
+		{
+			"start":4,
+			"step":1
+		}
+	},
+	"seed_filter":
+	{
+		"tag": "td",
+		"attrs":
+		{
+			"id":"tul"
+		},
+		"method":"text",
+		"chipper":
+		{
+			"start":4,
+			"step":1
+		}
+	},
+	"leech_filter":
+	{
+		"tag": "td",
+		"attrs":
+		{
+			"id":"tdl"
+		},
+		"method":"text",
+		"chipper":
+		{
+			"start":4,
+			"step":1
+		}
+	},
+	"url_filter":
+	{
+	    "tag": "a",
+	    "attrs":
+	    { 
+		"href": true
+	    },
+	    "attr_len":1,
+	    "method": "attr",
+	    "attr":"href",
+	    "manipulate":
+	    {
+		"regexp":"torrent/(\\d+)/",
+		"prefix":"http://www.torlock.com/tor/",
+		"suffix":".torrent"
+	    },
+		"chipper":
+	    {
+		"start":30,
+		"step":1
+	    }
+	}
+}

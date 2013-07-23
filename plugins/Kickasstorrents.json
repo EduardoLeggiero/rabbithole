@@ -1,0 +1,96 @@
+{
+    "base_search_url": "http://kat.ph/",
+    "pattern":"usearch/[query]%20category%3A[category]/[page]/",
+    "gzipped":true,
+    "headers":  
+    {
+    },
+    "page_rules":
+    {
+	"start":1,
+	"step":1,
+	"max_items":25
+    },
+    "categories":
+    {
+	"All":"all",
+	"Applications":"applications",
+	"Movies":"movies",
+	"Music":"music",
+	"Tv":"tv",
+	"Other":"other"
+    },
+    "operations":["titles_filter","category_filter","size_filter","seed_filter","leech_filter","url_filter","magnet_url_filter"],
+    "titles_filter": 
+    {
+	"tag": "a",
+	"attrs":
+	{
+	    "href":true,
+	    "class":"normalgrey font12px plain bold"
+	},
+	"method": "text"
+    },
+    "category_filter":
+	{
+	    "tag": "span",
+	    "attrs":
+	    {
+		"id":true
+	    },
+	    "method": "text"
+	    
+	},
+    "size_filter":
+    {
+	"tag":"td",
+	"attrs":
+	{
+	    "class":"nobr center"
+	},
+	"method":"text"
+    },
+    "seed_filter":
+    {
+	"tag":"td",
+	    "attrs_len": 1,
+	"attrs":
+	{
+	    "class":"green center"
+	},
+	"method":"text"
+    },
+    "leech_filter":
+    {
+	"tag":"td",
+	"attrs_len": 1,
+	"attrs":
+	{
+	    "class":"red lasttd center"
+	},
+	"method":"text"
+    },
+    "url_filter":
+    {
+	"tag": "a",
+	"attrs":
+	{ 
+	    "href": true,
+	    "title":"Download torrent file"
+	},
+	"method": "attr",
+	"attr":"href"
+    },
+    "magnet_url_filter":
+    {
+	"tag": "a",
+	"attrs":
+	{ 
+	    "href": true,
+			"title":"Torrent magnet link"
+	},
+	"method": "attr",
+	"attr":"href"
+    }
+    
+}

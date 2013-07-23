@@ -1,0 +1,111 @@
+{
+	"base_search_url": "http://isohunt.com/torrents/?",
+	"headers":  
+	{		
+	},
+	"page_rules":
+	{
+	    "start":1,
+	    "step":1,
+	    "max_items":20
+	},
+	"pattern": "ihq=[query]&iht=[category]&ihp=[page]",
+	"operations":["titles_filter","category_filter","size_filter","seed_filter","leech_filter","url_filter"],
+	"categories":
+	{
+		"All":-1,
+		"Video":1,
+		"Tv":3,
+		"Audio":2,
+		"Music":10,
+		"Games":4,
+		"Applications":5,
+		"Pictures":6,
+		"Anime":7,
+		"Comics":8,
+		"Books":9,
+		"Misc":0
+	},
+	"titles_filter": 
+	{
+		"tag": "a",
+		"attrs":
+		{ 
+			"id": true
+		},
+		"method": "text"
+	},
+	"category_filter":
+	{
+	    "tag": "td",
+	    "decode":true,
+	    "attrs":
+	    {
+		"class":["row3","row4"]
+	    },
+	    "method": "text",
+	    "attrs_len": 1,
+	    "chipper":
+	    {
+		"start":0,
+		"step":3
+	    }
+	},
+	"size_filter":
+	{
+	    "tag": "td",
+	    "attrs":
+	    {
+		"class":true,
+		"title":true
+	    },
+	    "method": "text"
+	},
+    "seed_filter":
+    {
+	"tag": "td",
+	"attrs":
+	{
+	    "class":["row3","row4"]
+	},
+	"method":"text",
+	"attrs_len": 1,
+	"chipper":
+	{
+	    "start":1,
+	    "step":3
+	}
+    },
+    "leech_filter":
+    {
+	"tag": "td",
+	"attrs":
+	{
+	    "class":["row3","row4"]
+	},
+	"method":"text",
+	"attrs_len": 1,
+	"chipper":
+	{
+	    "start":2,
+	    "step":3
+	}
+    },
+    "url_filter":
+    {
+	"tag": "a",
+	"attrs":
+	{ 
+	    "href": true,
+	    "id": true
+	},
+	"method": "attr",
+	"attr":"href",
+	"manipulate":
+	{
+	    "prefix":"http://isohunt.com",
+	    "to_replace":["torrent_details"],
+	    "replace_with":["download"]
+	}
+    }
+}

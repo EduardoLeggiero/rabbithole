@@ -1,0 +1,1 @@
+{"DisabledPlugins": ["Piratebay"], "default": "Isohunt", "timeout": 10, "pages": 3,"transmission": {"port": "9091", "host": "localhost", "user": "", "pass": ""}}

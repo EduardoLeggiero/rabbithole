@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=Latest
+Name=RabbitHole
+Comment=A simple yet flexible torrent search program that uses plugins.
+Type=Application
+Exec=/usr/bin/rabbithole
+Icon=/usr/share/rabbithole/images/logo.png
+Terminal=false
+Categories=Network;GTK;
+
