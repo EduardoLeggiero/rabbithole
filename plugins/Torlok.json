@@ -1,7 +1,8 @@
 {
 	"base_search_url": "http://www.torlock.com/",
 	"headers":  
-	{		
+	{
+	    "User-agent":"Mozilla/4.0 (compatible; MSIE 5.0; SunOS 5.9 sun4u; X11)"	
 	},
 	"page_rules":
 	{
@@ -9,7 +10,7 @@
 		"step":1,
 	        "max_items":75
 	},
-	"pattern": "[category]/torrents/[query].html?sort=seeds&page=[page]",
+	"pattern": "[category]/torrents/[query].html",
 	"operations":["titles_filter","category_filter","size_filter","seed_filter","leech_filter","url_filter"],
 	"categories":
 	{

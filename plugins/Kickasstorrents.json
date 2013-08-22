@@ -1,5 +1,5 @@
 {
-    "base_search_url": "http://kat.ph/",
+    "base_search_url": "http://kickass.to/",
     "pattern":"usearch/[query]%20category%3A[category]/[page]/",
     "gzipped":true,
     "headers":  

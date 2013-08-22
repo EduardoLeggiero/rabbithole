@@ -23,8 +23,9 @@ import wx
 from pubsub import pub
 from request import doRequest
 
-DEBUG = True
-PRINTURL = True
+DEBUG = False
+PRINTURL = False
+SAFE = True
 
 class SearchThread(Thread):
 
@@ -99,13 +100,13 @@ class SearchThread(Thread):
 
             urldata = plugin["pattern"].replace('[query]', quote_plus(query)).replace('[category]', str(category)).replace('[page]', str(page_no))
             wx.CallAfter(pub.sendMessage, "status", status="[" + plugin_name + "] Retrieving data on page " + str(page_counter))
+            if PRINTURL:
+                print("Fetched data on " + plugin['base_search_url'] + urldata)
             page = doRequest(plugin['base_search_url'] + urldata,plugin['headers'],timeout)
             wx.CallAfter(pub.sendMessage, "status", status="[" + plugin_name + "] Parsing data on page " + str(page_counter))
             soup = bs4.BeautifulSoup(page)
             del page
 
-            if PRINTURL:
-                print("Fetched data on " + plugin['base_search_url'] + urldata)
 
             output = {}   
 
@@ -165,7 +166,7 @@ class SearchThread(Thread):
                     elements_counter = len(output[op])
                 
 
-            if not DEBUG:
+            if SAFE:
                 for key in output.keys():
                     output[key] = output[key][:elements_counter]
 
