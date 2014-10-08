@@ -26,8 +26,8 @@ import wx
 from MainFrame import MainFrame
 
 if __name__ == "__main__":
-    RabbitHole = wx.PySimpleApp(0)
-    wx.InitAllImageHandlers()
+    RabbitHole = wx.App(False)
+    #wx.InitAllImageHandlers()
     frame_3 = MainFrame(None, wx.ID_ANY, "")
     RabbitHole.SetTopWindow(frame_3)
     frame_3.Show()

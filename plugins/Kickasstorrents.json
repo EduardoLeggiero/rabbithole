@@ -27,7 +27,7 @@
 	"attrs":
 	{
 	    "href":true,
-	    "class":"normalgrey font12px plain bold"
+	    "class":"cellMainLink"
 	},
 	"method": "text"
     },
